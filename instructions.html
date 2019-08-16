@@ -7,7 +7,7 @@
 -->
 
 	<head>
-		<title>Instructions for Milling Feeds and Speeds Calculator</title>
+		<title>Intruções para uso da Calculadora</title>
         <style type="text/css">
             body  {padding: 20px;}
             input {margin-bottom: 5px; padding: 2px 3px; width: 6em; float: right; }
@@ -71,73 +71,73 @@
 	<br/>
 	Table of Contents:
         <ul>
-            <li><a href="#beginner">For Beginners</a></li>
-            <li><a href="#instructions">How to use the Calculator</a></li>
-            <li><a href="#glossary">Glossary of Terms</a></li>
-            <li><a href="#example">Example of Use</a></li>
+            <li><a href="#beginner">Para Iniciantes</a></li>
+            <li><a href="#instructions">Como usar a calculadora</a></li>
+            <li><a href="#glossary">Glossário de termos</a></li>
+            <li><a href="#example">Exemplos de uso</a></li>
         </ul>
 	</p>
 
 		<hr>
-        <h3>What is this?</h3>
-        <p>This is a calculator for computing the correct feeds and speeds (RPM and IPM) for milling machines.  It differs from other online calculators because it is an OPTIMIZING calculator -- each parameter has a range from minimum to maximum.  The calcuator searches for the best cut (maximizing MRR) while keeping all parameters within the range you specify.  This is a unique feature among milling calculators, no other calculator gives you this much control over your cut!</p>
-        <p>The calculator also includes many features not available from other calcuators: radial &amp; axial chip thinning, computing speedups for HSM paths, shank diameter, stickout, torque limits, deflection limits, axial &amp; radial force limits, etc.  These features are often offered as separate 'wizards' on other calculators, but they are built into and optimized along with all other parameters in this calculator.</p>
+        <h3>Do que se trata?</h3>
+        <p>Esta é uma calculadora para computar a velocidade de avanço e rotação para fresadoras. Difere de outras calculadoras por ser uma calculadora otimizadora --  cada parâmetro possuia faixa de valores, do mínimo ao máximo. A calculadora então encontra a melhor codição de corte (através da maximização da Taxa de Remoção de Material - MRR), enquanto mantém todos os parâmetros dentro das faixas especificadas. Esta é uma característica única entre as calculadoras, pois nenhuma outra lhe dá tanto controle sobre o seu corte!</p>
+        <!-- <p>Esta calculadora também inclui várias características não comumente disponíveis: The calculator also includes many features not available from other calcuators: radial &amp; axial chip thinning, computing speedups for HSM paths, shank diameter, stickout, torque limits, deflection limits, axial &amp; radial force limits, etc.  These features are often offered as separate 'wizards' on other calculators, but they are built into and optimized along with all other parameters in this calculator.</p> -->
 
-        <h3 id="beginner">Beginners - READ ME</h3>
-        Most CAM software does not generate toolpaths with "constant tool engagement".  If you blindly use the data from this (or any!) calculator you will break end mills.  Until you become more familiar with the intricacies of CAM programming, follow these simple rules:
+        <h3 id="beginner">Inciantes - Leia-me</h3>
+        A maioria dos softwares CAM não geram caminhos onde a ferramenta fica em constante contato com a peça usinada. Se você usar cegamente dados desta - ou de qualquer! - calculadora, você vai ter sua fresa quebrada. Até que você esteja mais familiarizado com as particularidades da programação CAM, siga as seguintes regras:
         <ul>
-            <li>Really measure your tool's stickout - it's important!  Try to minimize the stickout by using the shortest bit that can do the work, and sliding the bit as far as possible into the tool holder.</li>
-            <li>Set the min and max Width of Cut (WOC) to be the same as the tool's DIAMETER. This is called a 'full slot' cut, and will provide safer speeds &amp; feeds. (Tip: leave a few thousandths difference between min and max.)</li>
-            <li>Get the maximum 'Surface Feet per Minute' (max SFM) and maximum 'Chipload' (also called Inches per Tooth - IPT) values from your tool vendor, tell them you are 'slotting'.</li>
-            <li>Enter all the values and press 'Calculate'.</li>
-            <li>Program your CAM to use the displayed RPM and IPM, but use only 50% of the depth (ie: if the results show 0.2" DOC, then program your CAM to use only 0.1" DOC).</li>
-            <li>Check how nice the cut looks - smooth sides and bottom?  No chatter?  Gradually increase the DOC until your tool, machine, material, or clamping complains.</li>
-            <li>Repeat this procedure for every cutter and material combination.</li>
+            <li>Realmente meça a parte visível da sua ferramenta, isso é de fundamental importância! Tente minimizar sempre, utilizando a menor ferramenta disponível e capaz de realizar o trabalho e sempre encaixe tão profundo quanto possível a ferramenta no porta-ferramentas.</li>
+            <li>Ajuste o mínimo e o máximo do Comprimento de Corte (WOC) como sendo igual ao diâmetro da ferramenta. Isso se chama corte com rasgo completo (<i>full-slot</i>) e provê velocidades e rotações mais seguras. (Dica: deixe alguns milésimos entre o valor mínimo e o máximo.)</li>
+            <li>Obtenha os máximos valores de Superfície-Pé por minuto (SFM) e o máximo Cavaco por Dente (IPT) para a ferramenta de corte que você usará. Informe-se com o seu fornecedor de fresas.</li>
+            <li>Entre todos os valores e pressione 'Calcular'.</li>
+            <li>Programe o seu software CAM com os valores de rotação e avanço, usango apenas 50% do valor de Profundidade de Corte (DOC): isto é, se o resultado mostrar 5mm de Profundidade, utilize apenas 2.5mm no CAM).</li>
+            <li>Verifique a qualidade do corte: liso em ambos os lados? Sem ruídos estranhos durante o corte? Aumente gradualemnte a Profundidade de Corte até que alguém - sua ferramenta, máquina, material ou sistema de fixação - comecem a reclamar.</li>
+            <li>Repita este procedimento para cada material e para cada ferramenta.</li>
         </ul>
 
-	    <h3 id="instructions">How to use this calculator:</h3>
+	    <h3 id="instructions">Como usar esta calculadora:</h3>
 	    <ul>
-	    	<li>Fill in each box to the best of your knowledge.</li>
-		    <li>Get SFM and Chipload from your tool vendor.</li>
-		    <li>Press "Calculate" to generate cut parameters.</li>
-            <li>Each time you press Calculate, 100 new cut variations are tried.  The best cut (by MRR) from all runs will be shown in the results.</li>
-            <li>Test the cut using lower engagement than the calculator suggests, gradually increasing engagement as you prove out the cut.</li>
-            <li>If the machine, cutter, material, or clamping is inadequate to meet the calculated values, adjust the inputs to allow for reduced cutting pressures; try reducing SFM, deflection, torque, HP, etc. and re-computing the feeds and speeds.</li>
+	    	<li>Preencha cada caixa no melhor de sua capacidade.</li>
+		    <li>Obtenha os valores de Tamanho de Cavaco e SFM com o seu fornecedor de ferramentas.</li>
+		    <li>Pressione calcular para gerar os parâmetros de corte.</li>
+            <li>A cada vez que você pressiona 'Calcular', 100 novas variações são testadas. A melhor Taxa de Remoção de Material (MRR) será apresentada.</li>
+            <li>Teste o corte usando um avanço lateral menor do que o sugerido, gradualmente aumentando o avanço enquanto você avalia os resultados de corte.</li>
+            <li>Se a máquina, ferramenta de corte, material ou fixação forem inadequados para os parâmetros calculados, ajuste o valor de entrada para reduzir as pressões de corte: tente reduzir os valores de Superfície-Pé por minuto (SFM), deflecção, torque e potência, recalculando os valores de rotação e avanço.</li>
 		</ul>
 
-	    <h3>What do the colors mean?</h3>
+	    <h3>O que significam as cores?</h3>
 	    <ul>
-	    	<li>Orange: the highlighted parameters are near their range limits.</li>
-	    	<li>Pink/Red input field: The input is invalid, or min = max (leave a few thou between min and max).</li>
-            <li>Pink/Red results: the cut optimizer failed -- DO NOT USE the displayed cut parameters.</li>
+	    	<li>Laranja: os valores destacados se encontram próximos do seu limite.</li>
+	    	<li>Campos de entrada Rosa ou Vermelho: O valor entrado é inválido ou min = max (lembre-se de deiexar uma pequena diferença entre os valores).</li>
+        <li>Campos Rosa ou Vermelho nos resultados: o otimizador falhou! Não use os valores apresentados!</li>
 	    </ul>
 
-	    <h3 id="glossary">What are all these acronyms?</h3>
+	    <h3 id="glossary">O que são todos os acronimos?</h3>
 	    <ul>
-        	<li><b>RPM - Revolutions per Minute:</b> How fast the machine's spindle can turn.</li>
-        	<li><b>RPM at Peak Torque:</b> RPM value at which the motor generates maxium torque (power).  For constant-torque motors (ie: geared speed selection, etc.), just enter a value larger than your max RPM.</li>
-        	<li><b>IPM - Inches Per Minute:</b> How fast can the machine move?</li>
-        	<li><b>HP at Spindle:</b> How much power (horsepower) is delivered to the spindle?  Typically, this is lower than the horsepower at the motor.</li>
-        	<li><b>Modulus of Elasticity:</b> A measure of how 'floppy' the tool material is.  High Speed Steel (HSS) bends more easily than Carbide, so HSS tools have a lower Modulus of Elasticity than Carbide tools.</li>
-        	<li><b>Diameter:</b> The nominal diameter of the tool.</li>
-        	<li><b>Teeth:</b> How many teeth (flutes) does the tool have?</li>
-        	<li><b>Ballnose?:</b> Is this a ballnose (hemispherical) cutter?</li>
+        	<li><b>RPM - Revoluções por minuto:</b> O quão rápido o spindle da máquina deve rodar.</li>
+        	<li><b>RPM no pico de torque:</b> Velocidade na qual o spindle gera seu maior torque. Para motores de torque constant (como os de seleção de velocidade por engrenagens), apenas entre com a máxima velocidade da sua máquina.</li>
+        	<li><b>Avanço (IPM - Polegadas por Minuto/ MPM - Metros por Minuto):</b> A velocidade máxima na qual o seu spindle pode cortar.</li>
+        	<li><b>Potência do Spindle:</b> Qual a potência mecânica entregue pelo seu spindle? Tipicamente, este valor é menor do que a potência elétrica do seu spindle, já que não há máquina ideal - aquela que converte toda a energia elétrica em energia mecânica.</li>
+        	<li><b>Módulo de Elasticidade:</b> Uma medida do quão "molenga" o material da ferramenta de corte é. Aço rápido (HSS) enverga mais facilmente que Carbeto, logo, ferramentas de Aço Rápido tem um Módulo de Elasticidade menor que ferramentas de Metal Duro.</li>
+        	<li><b>Diâmetro:</b> O valor nominal do diâmetro da ferramenta de corte.</li>
+        	<li><b>Dentes:</b> Quantos dentes - ou facas (flutes) a sua ferramenta tem?</li>
+        	<li><b>Ballnose?:</b> A ferramenta de corte tem ballnose (superfície de corte hemisférica)?</li>
         	<li><b>Stickout:</b> Distance from the tool holder to the tip of the cutting tool.</li>
-        	<li><b>Flute Length:</b> The length of the cutting edges on the tool.</li>
-        	<li><b>Helix Angle:</b> Angle at which the teeth spiral up the tool; measured off vertical (vertical cutting edges = 0-degree helix angle).</li>
-        	<li><b>Unit Power:</b> The horsepower needed to remove 1 cubic inch of material in 1 minute.</li>
-        	<li><b>SFM - Surface Feet per Minute:</b> How fast can the workpiece be presented to the tool without stressing the tool?</li>
-        	<li><b>Chipload - Inches per Tooth (IPT):</b> The amount of material each flute 'bites' at one time.  Your cutting tool vendor will give you this information.  Typically expressed as percentage of the tool Diameter.</li>
-        	<li><b>DOC - Depth of Cut:</b> Also known as Axial Depth of Cut (ADOC).  The distance along the tool's axis that will be contacting material for cutting (typically in the Z axis).</li>
-        	<li><b>WOC - Width of Cut:</b> Also known as Radial Depth of Cut (RDOC).  The distance along the tool's diameter that will be contacting material for cutting (typically in the X/Y axis).</li>
+        	<li><b>Comprimento da ferramenta útil:</b> O comprimento do fio de corte da ferramenta.</li>
+        	<li><b>Ângulo da Hélice:</b> Ângulo no qual o fio de corte sobe em espiral, medido a partir da vertical (ferramentas de corte reto tem uma hélice de 0 graus).</li>
+        	<li><b>Potência Unitária:</b> A potência necessária para remover uma polegada cúbida do material no período de 1 minuto.</li>
+        	<li><b>SFM/SMM - Superfície-Pé por Minuto /Superfície-Metro por Minuto:</b> O quão rápido o material de corte pode ser "apresentado" à ferramenta sem causar estresse mecânico na ferramenta.</li>
+        	<li><b>Cavaco - Polegadas por Dente (IPT):</b> A quantidade de material que cada dente "morde" de uma vez. Seu fornecedor de ferramentas deve ser capaz de lhe dar esta informação, que é tipicamente apresentada em porcentagem do diâmetro da ferramenta.</li>
+        	<li><b>Profund. do Corte (Z)(DOC):</b> A distância na qual o eixo da ferramenta estará em contato com o material de corte (tipicamente no eixo Z).</li>
+        	<li><b>Largura do Corte (X-Y) (WOC):</b> A distância na qual o diâmetro da ferramenta estará em contato com o material de corte.</li>
         	<li><b>MRR - Material Removal Rate:</b> Cubic inches of material removed per minute.</li>
-        	<li><b>Deflection:</b> How far the tool tip deflects from its centerline while making this cut.</li>
-        	<li><b>Cusp Height:</b> For ballnose/corner-rounded cutters, this is the height of the uncut material between sequential passes at the current width and depth of cut.</li>
-        	<li><b>Reserve HP:</b> The percentage of horsepower to keep in reserve (this is useful when the tool is suddenly plunged into a corner).</li>
-        	<li><b>Reserve Torque:</b> The percentage of torque to keep in reserve (this is useful when the tool is suddenly plunged into a corner).</li>
-        	<li><b>Adaptive:</b> Check this box if your toolpath is "constant engagement," sometimes called "adaptive roughing" or "high speed machining."  Specifically; this box turns on radial chip-thinning and the resulting feeds &amp; speeds will snap tools quickly if they run into a tight corner or experience interrupted cutting.</li>
-        	<li><b>Plunge:</b> The feed rate (IPM) to use when plunging.  WARNING: This value should only be used when the calcuated feeds and speeds are for full slotting.</li>
-        	<li><b>Torque:</b> The inch-pounds of force being delivered to the cutting edges.</li>
+        	<li><b>Deflexão:</b> Uma medida do quanto a ferramenta se deflete da sua linha central enquanto está fazendo o corte.</li>
+        	<li><b>Altura da Sobra (Cusp):</b> Para fresas ballnose ou com canto arredondado, esta é a altura do material não cortado, devido a geometria da ferramenta.</li>
+        	<!--<li><b>Reserve HP:</b> The percentage of horsepower to keep in reserve (this is useful when the tool is suddenly plunged into a corner).</li>
+        	<li><b>Reserve Torque:</b> The percentage of torque to keep in reserve (this is useful when the tool is suddenly plunged into a corner).</li>  -->
+        	<li><b>HSM / Adaptive / Constant TEA:</b> Selecione esta caixa se a trajetória gerada pelo CAM é de ataque constante, ocasionalmente chamado de "adaptive roughing" ou usinagem em alta velocidade (HSM). Use com cautela, pois os valores resultantes desta opção poderão mais facilmente ocasionar quebra de ferramenta.</li>
+        	<li><b>Avanço Vertical (mergulho):</b> A velocidade na qual a ferramenta avança verticalmente contra o material.</li>
+        	<li><b>Torque:</b> A força entregue aos fios cortantes da ferramenta</li>
         	<li><b>Radial - Radial Chip Thinning Factor (RCTF):</b> The speed factor applied to the IPM when running light profile cuts (see: Adaptive).</li>
             <li><b>Axial - Axial Chip Thinning Factor (ACTF):</b> The speed factor applied to the IPM when running low-depth ballnose cuts (see: Adaptive).</li>
         	<li><b>Feed Adj. - Feed Correction Factor (FCF):</b> RCTF * ACTF = The total feed correction applied due to chip thinning (see: Adaptive).</li>
@@ -146,7 +146,7 @@
         	<li><b>TEA - Tool Engagement Angle:</b> The number of degrees of arc along which the live tool is cutting material.  The maximum of 180-degrees is a full slot cut.</li>
 	    </ul>
 
-        <h3 id="example">Can you walk me through an example?</h3>
+        <!--<h3 id="example">Can you walk me through an example?</h3>
         <b>Sure! [NOTE: This was for an older version of the calculator without the optimizer]</b>
         <ul>
             <li>I own a Tormach 770 milling machine.</li>
@@ -206,10 +206,8 @@
         </ul>
 
         <b>So there you have it - how I used this calculator to pick the feeds &amp; speeds for a new cutting tool!</b>
-
+      -->
 	    <hr>
-
 	    Copyright 2015-2016. All Rights Reserved. Bryan Turner (<a href="mailto:bryan.turner@pobox.com">bryan.turner@pobox.com</a>)
-
 	</body>
 </html>
