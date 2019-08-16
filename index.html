@@ -63,8 +63,8 @@
             display: inline;
 
             float: left;
-            width: 16em;
-            height: 1.6em;
+            width: 24em;
+            height: 2.5em;
             text-decoration: none;
             padding: 0.2em 0.6em;
             border-right: 1px solid #CCCCCC;
@@ -75,8 +75,10 @@
         .imperial .metric   { display: none;   }
         .imperial .imperial { display: inline; }
 
-        div.results li { width: 16em; }
+        div.results li { width: 24; }
         div.results ul li ul li { width: 6em; border: none;}
+        
+        .tab {position:relative;left:20px; }
     </style>
   </head>
 
@@ -92,6 +94,10 @@
         </form>
 
         <a href="instructions.html">Instruções</a>
+        <p> Desenvolvido por Bryan Turner COPYRIGHT 2015-2016.</p>
+        <p> Traduzido por Paulo Sherring.</p>
+        <p> ATENÇÃO! Os valores aqui calculados são para referência apenas, use-os por sua conta e risco! </p>
+        <p> Usinagem é uma atividade com sérios riscos de acidentes, proteja-se: use EPI's! </p>
         <br/>
         <br/>
         <a href="http://brturn.github.io/feeds-and-speeds/beta.html">NOVO! -- BETA-TESTING -- Calculadora HSM !</a> <br/>
@@ -145,7 +151,7 @@
 
     <div class="header"><b class="header">Cut</b></div>
     <ul>
-        <li>Profundidade do Corte (Z)   <small class="imperial">inch</small><small class="metric">mm</small>      <small>(min, max)</small>   <input id="max_DOC" value="0.75">           <input id="min_DOC" value="0.01"></li>
+        <li>Profund. do Corte (Z)   <small class="imperial">inch</small><small class="metric">mm</small>      <small>(min, max)</small>   <input id="max_DOC" value="0.75">           <input id="min_DOC" value="0.01"></li>
         <li>Largura do Corte (X-Y)   <small class="imperial">inch</small><small class="metric">mm</small>      <small>(min, max)</small>   <input id="max_WOC" value="0.375">          <input id="min_WOC" value="0.01"></li>
         <li>Deflexão  <small class="imperial">inch</small><small class="metric">mm</small> <small>(max)</small>        <input id="max_DEFLECTION" value="0.001"></li>
 <!--         <li>Reserve HP %                            <input id="in_RESERVE_HP"     value="5"></li>
@@ -154,42 +160,37 @@
         <li><input type="checkbox" id="in_ADAPTIVE" onclick="inputChanged()"><small>HSM / Adaptive / Constant TEA</small></li>
     </ul>
 
-    <div class="header"><b class="header">RESULTS</b>
-        <button onclick="new_compute()">Compute</button>
-        <a id="CURRENT" href="">[Bookmark this link to save these parameters]</a>
+    <div class="header"><b class="header">RESULTADOS</b>
+        <button onclick="new_compute()">Computar</button>
+        <a id="CURRENT" href="">[Adicione este link aos favoritos para salvar estes parâmetros]</a>
     </div>
     <div id="OUT" class="results">
         <ul>
-            <li><ul><li><b>RPM</b>   </li><li id="RPM"    style="font-weight: bold;"/></ul></li>
-            <li><ul><li><b>Feed</b>  <small class="imperial">in/min</small><small class="metric">mm/min</small></li><li id="IPM"    style="font-weight: bold;"/></ul></li>
-            <li><ul><li><b>Plunge</b></li><li id="PLUNGE" style="font-weight: bold;"/></ul></li>
+            <li><b>RPM</b>   <span class="tab" id="RPM"/></li>
+            <li><b>Avanço</b>  <small class="imperial">in/min</small><small class="metric">mm/min</small><span class="tab" id="IPM"/></li>
+            <li><b>Avanço Vertical</b><span class="tab" id="PLUNGE"/></li>
         </ul>
         <ul>
-            <li><ul><li>DOC <small class="imperial">inch</small><small class="metric">mm</small></li><li id="DOC"/></ul></li>
-            <li><ul><li>WOC <small class="imperial">inch</small><small class="metric">mm</small></li><li id="WOC"/></ul></li>
-            <li><ul><li><span class="imperial">SFM</span><span class="metric">SMM</span> </li><li id="SFM"/></ul></li>
+            <!--<li><ul><li>Profundidade de Corte (Z) <small class="imperial">inch</small><small class="metric">mm</small></li><li id="DOC"/></ul></li> -->
+            <li> Profund. de Corte (Z)  <small class="imperial">inch</small><small class="metric">mm</small> <span class="tab" id="DOC"></b></li> 
+            <li>Lartura de Corte (X-Y) <small class="imperial">inch</small><small class="metric">mm</small><span class="tab" id="WOC"></li>
+            <li><span class="imperial">Superfície-Pé por Minuto</span><span class="metric">Superfície-Metro por Minuto</span> <span class="tab" id="SFM"/></li>
         </ul>
-        <div class="header"><b class="header">ADVANCED</b></div>
+        <div class="header"><b class="header">Avançado</b></div>
         <ul>
-            <li><ul><li>MRR        <small class="imperial">in^3/min</small><small class="metric">cm^3/min</small></li><li id="MRR"/></ul></li>
-            <li><ul><li>Cut Power  <small class="imperial">HP</small><small class="metric">KW</small></li><li id="HP"/></ul></li>
-            <li><ul><li>Deflection <small class="imperial">inch</small> <small class="metric">mm</small></li><li id="DEFLECTION"/></ul></li>
-        </ul>
-        <ul>
-            <li><ul><li>Torque     <small class="imperial">in-lbs</small><small class="metric">NM</small> </li><li id="TORQUE"/></ul></li>
+            <li>Taxa de Remoção de Material <small class="imperial">in^3/min</small><small class="metric">cm^3/min</small> <span class="tab" id="MRR"/></li>
+            <li>Potência de Corte  <small class="imperial">HP</small><small class="metric">KW</small><span class="tab" id="HP"/></li>
+            <li>Deflexão <small class="imperial">inch</small> <small class="metric">mm</small><span class="tab" id="DEFLECTION"/></li>
+            <li>Torque     <small class="imperial">in-lbs</small><small class="metric">NM</small> <span class="tab" id="TORQUE"/></li>
             <!-- <li><ul><li>Torque     <small>(oz-in)</small>  </li><li id="TORQUEOZ"/></ul></li> -->
-            <li><ul><li>Force      <small class="imperial">lbs</small><small class="metric">kg</small>    </li><li id="P"/></ul></li>
-        </ul>
-        <ul>
-            <li><ul><li>Chipload   <small class="imperial">inch</small><small class="metric">mm</small></li><li id="CHIPLOAD"/></ul></li>
-            <li><ul><li>Radial     </li><li id="RCTF"/></ul></li>
-            <li><ul><li>Axial      </li><li id="ACTF"/></ul></li>
-            <li><ul><li>Feed Adj.  </li><li id="FCF"/></ul></li>
-        </ul>
-        <ul>
-            <li><ul><li>Adj. Unit Pwr </li><li id="UNITPOWER"/></ul></li>
-            <li><ul><li>Eff. Diameter <small class="imperial">inch</small><small class="metric">mm</small></li><li id="EFFECTIVE"/></ul></li>
-            <li><ul><li>TEA  <small>(deg.)</small> </li><li id="TEA"/></ul></li>
+            <li>Força      <small class="imperial">lbs</small><small class="metric">kg</small>   <span class="tab" id="P"/></li>
+            <li>Cavaco   <small class="imperial">inch</small><small class="metric">mm</small><span class="tab" id="CHIPLOAD"/></li>
+            <li>Radial Chip Thinning     <span class="tab" id="RCTF"/></li>
+            <li>Axial  Chip Thinning     <span class="tab" id="ACTF"/></li>
+            <li>Feed Correction Factor  <span class="tab" id="FCF"/></li>
+            <li>Potência Unitária  Unit Pwr <span class="tab" id="UNITPOWER"/></li>
+            <li>Diâmetro Efetivo <small class="imperial">inch</small><small class="metric">mm</small><span class="tab" id="EFFECTIVE"/></li>
+            <li>Ângulo Efetivo de Ataque <small>(deg.)</small> <span class="tab" id="TEA"/></li>
         </ul>
     </div>
 
