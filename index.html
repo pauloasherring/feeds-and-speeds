@@ -100,7 +100,7 @@
 
     <hr/>
 
-    <div class="header"><b class="header">Machine</b></div>
+    <div class="header"><b class="header">Máquina</b></div>
     <ul>
         <li><input type="checkbox" id="in_METRIC" onclick="convertAll()">Métrico?</li>
         <li>RPM            <small>(min, max)</small>   <input id="max_RPM" value="10350">              <input id="min_RPM" value="525">    </li>
@@ -109,39 +109,39 @@
         <li>Potência do Spindle  <small class="imperial">HP</small>    <small class="metric">KW</small>   <input id="max_HP" value="1"></li>
     </ul>
 
-    <div class="header"><b class="header">Tool</b></div>
+    <div class="header"><b class="header">Ferramenta de corte</b></div>
     <ul>
         <li><select id="ux_E" onchange="uxPick('E')">
-                <option value="HSS">High Speed Steel, 27-31</option>
-                <option value="Carbide">Cemented Carbide, 75-91</option>
-                <option value="CUSTOM">CUSTOM</option>
+                <option value="HSS">Aço Rápido (HSS), 27-31</option>
+                <option value="Carbide">Metal Duro (Cemented Carbide), 75-91</option>
+                <option value="CUSTOM">Customizado</option>
         </select></li>
-        <li>Modulus of Elasticity               <input id="in_E" value="27"> <small>(10^6 psi)</small></li>
-        <li>Diameter    <small class="imperial">inch</small><small class="metric">mm</small><input id="in_DIAMETER" value="0.375"></li>
-        <li>#Teeth                              <input id="in_TEETH" value="3"></li>
+        <li>Módulo de Elasticidade               <input id="in_E" value="27"> <small>(10^6 psi)</small></li>
+        <li>Diâmetro    <small class="imperial">inch</small><small class="metric">mm</small><input id="in_DIAMETER" value="0.375"></li>
+        <li>Número de Dentes (flutes)                              <input id="in_TEETH" value="3"></li>
         <li><input type="checkbox" id="in_BALLNOSE" onclick="inputChanged()">Ballnose?</li>
-        <li>Total Stickout  <small class="imperial">inch</small><small class="metric">mm</small><input id="in_L" value="0.9"></li>
-        <li>Helix Angle                         <input id="in_HELIX" value="30"></li>
+        <li>Comprimento da ferramenta útil <small class="imperial">inch</small><small class="metric">mm</small><input id="in_L" value="0.9"></li>
+        <li>Ângulo da Hélice                         <input id="in_HELIX" value="30"></li>
     </ul>
 
     <div class="header"><b class="header">Material</b></div>
     <ul>
         <li>
             <select id="ux_UNITPOWER" onchange="uxPick('UNITPOWER')">
-              <option value="Aluminum">Aluminum</option>
-              <option value="Copper">Copper/Brass/Bronze</option>
-              <option value="Iron">Iron</option>
-              <option value="Steel">Steel</option>
-              <option value="Stainless">Stainless Steel</option>
-              <option value="Titanium">Titanium</option>
-              <option value="Plastic">Plastic</option>
-              <option value="Wood">Wood</option>
-              <option value="CUSTOM">CUSTOM</option>
+              <option value="Aluminum">Alumínio</option>
+              <option value="Copper">Cobre/Latão/Bronze</option>
+              <option value="Iron">Ferro</option>
+              <option value="Steel">Aço</option>
+              <option value="Stainless">Aço Inoxidável</option>
+              <option value="Titanium">Titânio</option>
+              <option value="Plastic">Plástico</option>
+              <option value="Wood">Madeira</option>
+              <option value="CUSTOM">Customizado</option>
             </select>
         </li>
-        <li>Unit Power  <small>HP/in^3</small> <input id="in_UNITPOWER" value="0.33"></li>
+        <li>Potência Unitária  <small>HP/in^3</small> <input id="in_UNITPOWER" value="0.33"></li>
         <li><span class="imperial">SFM</span><span class="metric">SMM</span>         <small>(min, max)</small>   <input id="max_SFM" value="600">            <input id="min_SFM" value="100"></li>
-        <li>Chipload <small class="imperial">in</small><small class="metric">mm</small><small>(min, max)</small><input id="max_CHIPLOAD" value="0.0023"><input id="min_CHIPLOAD" value="0.0008"></li>
+        <li>Tamanho do Cavaco <small class="imperial">in</small><small class="metric">mm</small><small>(min, max)</small><input id="max_CHIPLOAD" value="0.0023"><input id="min_CHIPLOAD" value="0.0008"></li>
     </ul>
 
     <div class="header"><b class="header">Cut</b></div>
